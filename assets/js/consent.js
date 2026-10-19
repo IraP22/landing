@@ -51,6 +51,8 @@
     "#" + BOX + " p{margin:0 0 12px;color:#B4B8BF}" +
     "#" + BOX + " a{color:#E9EAEC;text-decoration:underline}" +
     "#" + BOX + " .ipc-row{display:flex;gap:10px;flex-wrap:wrap}" +
+    "#" + BOX + " .ipc-col{display:flex;flex-direction:column;gap:10px}" +
+    "#" + BOX + " .ipc-col .ipc-btn{flex:none;width:100%}" +
     "#" + BOX + " .ipc-btn{flex:1 1 140px;border-radius:999px;padding:12px 16px;font:700 12px/1 Manrope,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}" +
     "#" + BOX + " .ipc-main{background:#E9EAEC;color:#0B0C0E;border:none}" +
     "#" + BOX + " .ipc-ghost{background:transparent;color:#E9EAEC;border:1px solid rgba(255,255,255,.22)}" +
@@ -94,13 +96,13 @@
     b.setAttribute("aria-label", "Согласие на обработку cookie");
     b.innerHTML =
       '<div data-v="main">' +
-        "<p>Мы используем cookie-файлы, чтобы сайт работал корректно, а также для аналитики и рекламы. " +
-        "Аналитические и маркетинговые cookie включаются только с вашего согласия. Подробнее — в " +
-        '<a href="cookie.html">Политике в отношении обработки файлов cookie</a>.</p>' +
+        "<p>Мы используем необходимые cookie для работы сайта, а с Вашего согласия — аналитические и маркетинговые cookie " +
+        "для анализа посещаемости, оценки эффективности рекламных кампаний, измерения конверсий и ретаргетинга. Подробнее — в " +
+        '<a href="cookie.html">Политике cookie</a>.</p>' +
         '<button type="button" class="ipc-link" data-c="open">Настроить</button>' +
-        '<div class="ipc-row">' +
-          '<button type="button" class="ipc-btn ipc-ghost" data-c="none">Отклонить</button>' +
-          '<button type="button" class="ipc-btn ipc-main" data-c="all">Принять</button>' +
+        '<div class="ipc-col">' +
+          '<button type="button" class="ipc-btn ipc-ghost" data-c="none">Отклонить необязательные</button>' +
+          '<button type="button" class="ipc-btn ipc-main" data-c="all">Принять все</button>' +
         "</div>" +
       "</div>" +
       '<div data-v="settings" hidden>' +
