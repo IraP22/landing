@@ -666,7 +666,7 @@
               <sc-if value="{{ msgWhatsApp }}" hint-placeholder-val="{{ true }}"><label style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;padding:8px 6px;min-height:40px;user-select:none;-webkit-tap-highlight-color:transparent"><input type="radio" name="messenger" value="viber" style="accent-color:#E9EAEC;width:17px;height:17px">Viber</label></sc-if>
               <label style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;padding:8px 6px;min-height:40px;user-select:none;-webkit-tap-highlight-color:transparent"><input type="radio" name="messenger" value="call" style="accent-color:#E9EAEC;width:17px;height:17px">Звонок</label>
             </div>
-            <label style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.45;color:#8E939B;cursor:pointer;padding:2px 0"><input type="checkbox" name="consent" required="required" style="accent-color:#E9EAEC;width:17px;height:17px;flex:none;margin:1px 0 0"><span>Даю согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">Политикой конфиденциальности</a></span></label>
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.45;color:#8E939B;cursor:pointer;padding:2px 0"><input type="checkbox" name="consent" required="required" style="accent-color:#E9EAEC;width:17px;height:17px;flex:none;margin:1px 0 0"><span>Даю <a href="consent.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">согласие на обработку персональных данных</a> в соответствии с <a href="privacy.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">Политикой</a></span></label>
             <button type="submit" disabled="{{ sending2 }}" style="background:#E9EAEC;color:#0B0C0E;border:none;font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:16px;border-radius:999px;cursor:pointer" style-hover="background:#FFFFFF">{{ buttonLabel2 }}</button>
             <sc-if value="{{ hasError2 }}"><p style="font-size:13px;color:#F08A7A">Не удалось отправить. Попробуйте ещё раз.</p></sc-if>
           </form>
@@ -696,7 +696,7 @@
               <sc-if value="{{ msgWhatsApp }}" hint-placeholder-val="{{ true }}"><label style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;padding:8px 6px;min-height:40px;user-select:none;-webkit-tap-highlight-color:transparent"><input type="radio" name="messenger" value="viber" style="accent-color:#E9EAEC;width:17px;height:17px">Viber</label></sc-if>
               <label style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;padding:8px 6px;min-height:40px;user-select:none;-webkit-tap-highlight-color:transparent"><input type="radio" name="messenger" value="call" style="accent-color:#E9EAEC;width:17px;height:17px">Звонок</label>
             </div>
-            <label style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.45;color:#8E939B;cursor:pointer;padding:2px 0"><input type="checkbox" name="consent" required="required" style="accent-color:#E9EAEC;width:17px;height:17px;flex:none;margin:1px 0 0"><span>Даю согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">Политикой конфиденциальности</a></span></label>
+            <label style="display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.45;color:#8E939B;cursor:pointer;padding:2px 0"><input type="checkbox" name="consent" required="required" style="accent-color:#E9EAEC;width:17px;height:17px;flex:none;margin:1px 0 0"><span>Даю <a href="consent.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">согласие на обработку персональных данных</a> в соответствии с <a href="privacy.html" target="_blank" style="color:#E9EAEC;text-decoration:underline">Политикой</a></span></label>
             <button type="submit" disabled="{{ sending }}" style="background:#E9EAEC;color:#0B0C0E;border:none;font-weight:700;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:16px;border-radius:999px;cursor:pointer" style-hover="background:#FFFFFF">{{ buttonLabel }}</button>
             <sc-if value="{{ hasError }}"><p style="font-size:13px;color:#F08A7A">Не удалось отправить. Попробуйте ещё раз или напишите мне напрямую.</p></sc-if>
           </form>
@@ -711,7 +711,9 @@
       <a href="https://t.me/jara_p" target="_blank" rel="noopener" style="color:#8E939B" style-hover="color:#FFFFFF">Telegram</a>
       <a href="https://www.instagram.com/irapetinaa/" target="_blank" rel="noopener" style="color:#8E939B" style-hover="color:#FFFFFF">Instagram</a>
       <a href="#contact" sc-camel-on-click="{{ goContact }}" style="color:#8E939B" style-hover="color:#FFFFFF">Заявка</a>
-      <a href="privacy.html" style="color:#8E939B" style-hover="color:#FFFFFF">Политика конфиденциальности</a>
+      <a href="privacy.html" style="color:#8E939B" style-hover="color:#FFFFFF">Политика обработки персональных данных</a>
+      <a href="consent.html" style="color:#8E939B" style-hover="color:#FFFFFF">Согласие на обработку персональных данных</a>
+      <a href="cookie.html" style="color:#8E939B" style-hover="color:#FFFFFF">Согласие на обработку cookies</a>
     </nav>
   </footer>
 </div>
