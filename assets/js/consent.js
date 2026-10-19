@@ -4,6 +4,7 @@
 (function () {
   var PIXEL_ID = ""; // ← сюда вписать ID пикселя из Meta Events Manager, например "123456789012345"
   var KEY = "cookie-consent"; // "all" или "necessary"
+  var BOX = "ip-consent-box"; // нейтральный id: блокировщики рекламы прячут элементы с id вроде "cookie-banner"
 
   function getChoice() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -24,14 +25,14 @@
   }
 
   function hideBanner() {
-    var b = document.getElementById("cookie-banner");
+    var b = document.getElementById(BOX);
     if (b) b.remove();
   }
 
   function showBanner() {
-    if (document.getElementById("cookie-banner")) return;
+    if (document.getElementById(BOX)) return;
     var b = document.createElement("div");
-    b.id = "cookie-banner";
+    b.id = BOX;
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-label", "Согласие на обработку cookies");
     b.style.cssText = "position:fixed;left:16px;right:16px;bottom:16px;z-index:200;max-width:520px;margin:0 auto;background:#16181B;color:#E9EAEC;border:1px solid rgba(255,255,255,0.14);border-radius:18px;padding:18px 20px;font:14px/1.5 Manrope,system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.5);text-align:center";
