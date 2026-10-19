@@ -35,20 +35,19 @@
   }
 
   var CSS =
-    "#" + BOX + "{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;max-width:520px;margin:0 auto;max-height:calc(100vh - 32px);overflow:auto;background:#16181B;color:#E9EAEC;border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px 20px;font:14px/1.5 Manrope,system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.5)}" +
-    "#" + BOX + " p{margin:0 0 12px;color:#B4B8BF}" +
+    "#" + BOX + "{position:fixed;left:20px;bottom:20px;z-index:200;width:360px;max-width:calc(100vw - 24px);max-height:calc(100vh - 32px);overflow:auto;box-sizing:border-box;background:#16181B;color:#E9EAEC;border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;font:12.5px/1.45 Manrope,system-ui,sans-serif;box-shadow:0 10px 32px rgba(0,0,0,.5)}" +
+    "@media (max-width:480px){#" + BOX + "{left:12px;right:12px;bottom:12px;width:auto;max-width:none}}" +
+    "#" + BOX + " p{margin:0 0 10px;color:#B4B8BF}" +
     "#" + BOX + " a{color:#E9EAEC;text-decoration:underline}" +
-    "#" + BOX + " .ipc-row{display:flex;gap:10px;flex-wrap:wrap}" +
-    "#" + BOX + " .ipc-col{display:flex;flex-direction:column;gap:10px}" +
-    "#" + BOX + " .ipc-col .ipc-btn{flex:none;width:100%}" +
-    "#" + BOX + " .ipc-btn{flex:1 1 140px;border-radius:999px;padding:12px 16px;font:700 12px/1 Manrope,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}" +
+    "#" + BOX + " .ipc-row{display:flex;gap:8px;flex-wrap:wrap}" +
+    "#" + BOX + " .ipc-btn{flex:1 1 auto;border-radius:999px;padding:9px 12px;font:600 12px/1.2 Manrope,system-ui,sans-serif;cursor:pointer;white-space:nowrap}" +
     "#" + BOX + " .ipc-main{background:#E9EAEC;color:#0B0C0E;border:none}" +
     "#" + BOX + " .ipc-ghost{background:transparent;color:#E9EAEC;border:1px solid rgba(255,255,255,.22)}" +
-    "#" + BOX + " .ipc-link{display:block;margin:0 auto 14px;background:none;border:none;color:#E9EAEC;text-decoration:underline;font:600 13px/1.4 Manrope,system-ui,sans-serif;cursor:pointer}" +
-    "#" + BOX + " .ipc-title{font:600 15px/1.3 Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px;color:#E9EAEC}" +
-    "#" + BOX + " .ipc-cat{padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}" +
+    "#" + BOX + " .ipc-link{display:inline-block;margin:0 0 10px;padding:0;background:none;border:none;color:#E9EAEC;text-decoration:underline;font:600 12px/1.4 Manrope,system-ui,sans-serif;cursor:pointer}" +
+    "#" + BOX + " .ipc-title{font:600 14px/1.3 Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0 0 8px;color:#E9EAEC}" +
+    "#" + BOX + " .ipc-cat{padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}" +
     "#" + BOX + " .ipc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;color:#E9EAEC}" +
-    "#" + BOX + " .ipc-desc{margin:6px 0 0;font-size:12px;line-height:1.45;color:#8E939B}" +
+    "#" + BOX + " .ipc-desc{margin:4px 0 0;font-size:11.5px;line-height:1.45;color:#8E939B}" +
     "#" + BOX + " .ipc-sw{position:relative;flex:none;width:42px;height:24px}" +
     "#" + BOX + " .ipc-sw input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}" +
     "#" + BOX + " .ipc-sw span{position:absolute;inset:0;border-radius:999px;background:rgba(255,255,255,.18);transition:background .2s;pointer-events:none}" +
@@ -88,7 +87,7 @@
         "для оценки эффективности рекламных кампаний, измерения конверсий и ретаргетинга. Подробнее — в " +
         '<a href="cookie.html">Политике cookie</a>.</p>' +
         '<button type="button" class="ipc-link" data-c="open">Настроить</button>' +
-        '<div class="ipc-col">' +
+        '<div class="ipc-row">' +
           '<button type="button" class="ipc-btn ipc-ghost" data-c="none">Отклонить необязательные</button>' +
           '<button type="button" class="ipc-btn ipc-main" data-c="all">Принять все</button>' +
         "</div>" +
