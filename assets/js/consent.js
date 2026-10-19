@@ -1,23 +1,22 @@
 // Окно согласия на cookie с настройками по категориям.
-// Технические — всегда включены. Аналитические (Яндекс.Метрика) и маркетинговые (Meta Pixel) —
-// только если посетитель их разрешил. Пока ID не вписаны, сервисы не загружаются.
+// Технические — всегда включены. Маркетинговые (Meta Pixel) — только если посетитель их разрешил.
+// Пока PIXEL_ID не вписан, пиксель не загружается.
 (function () {
   var PIXEL_ID = ""; // ← ID пикселя из Meta Events Manager, например "123456789012345"
-  var YM_ID = "";    // ← номер счётчика Яндекс.Метрики, например "98765432"
   var KEY = "cookie-consent";
   var BOX = "ip-consent-box"; // нейтральный id: блокировщики рекламы прячут элементы с id вроде "cookie-banner"
 
-  // Выбор хранится как {"a":true/false,"m":true/false}; старые значения "all"/"necessary" тоже понимаем.
+  // Выбор хранится как {"m":true/false}; старые значения "all"/"necessary" тоже понимаем.
   function getChoice() {
     var v = null;
     try { v = localStorage.getItem(KEY); } catch (e) { return null; }
     if (!v) return null;
-    if (v === "all") return { a: true, m: true };
-    if (v === "necessary") return { a: false, m: false };
-    try { var o = JSON.parse(v); return { a: !!o.a, m: !!o.m }; } catch (e) { return null; }
+    if (v === "all") return { m: true };
+    if (v === "necessary") return { m: false };
+    try { var o = JSON.parse(v); return { m: !!o.m }; } catch (e) { return null; }
   }
   function setChoice(c) {
-    try { localStorage.setItem(KEY, JSON.stringify({ a: !!c.a, m: !!c.m })); } catch (e) {}
+    try { localStorage.setItem(KEY, JSON.stringify({ m: !!c.m })); } catch (e) {}
   }
 
   function loadPixel() {
@@ -31,18 +30,7 @@
     window.fbq("track", "PageView");
   }
 
-  function loadMetrika() {
-    if (!YM_ID || window.ym) return;
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
-      m[i].l = 1 * new Date(); k = e.createElement(t); a = e.getElementsByTagName(t)[0];
-      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-    window.ym(Number(YM_ID), "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: false });
-  }
-
   function apply(c) {
-    if (c.a) loadMetrika();
     if (c.m) loadPixel();
   }
 
@@ -89,15 +77,15 @@
       st.textContent = CSS;
       document.head.appendChild(st);
     }
-    var cur = getChoice() || { a: false, m: false };
+    var cur = getChoice() || { m: false };
     var b = document.createElement("div");
     b.id = BOX;
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-label", "Согласие на обработку cookie");
     b.innerHTML =
       '<div data-v="main">' +
-        "<p>Мы используем необходимые cookie для работы сайта, а с Вашего согласия — аналитические и маркетинговые cookie " +
-        "для анализа посещаемости, оценки эффективности рекламных кампаний, измерения конверсий и ретаргетинга. Подробнее — в " +
+        "<p>Мы используем необходимые cookie для работы сайта, а с Вашего согласия — маркетинговые cookie " +
+        "для оценки эффективности рекламных кампаний, измерения конверсий и ретаргетинга. Подробнее — в " +
         '<a href="cookie.html">Политике cookie</a>.</p>' +
         '<button type="button" class="ipc-link" data-c="open">Настроить</button>' +
         '<div class="ipc-col">' +
@@ -109,8 +97,6 @@
         '<div class="ipc-title">Настройки cookie</div>' +
         '<div class="ipc-cat"><div class="ipc-head">Технические (обязательные)' + sw("t", true, true, "Технические cookie всегда включены") + "</div>" +
           '<p class="ipc-desc">Нужны для работы сайта, форм заявок и сохранения ваших настроек. Всегда включены, отключить нельзя.</p></div>' +
-        '<div class="ipc-cat"><div class="ipc-head">Аналитические' + sw("a", cur.a, false, "Аналитические cookie") + "</div>" +
-          '<p class="ipc-desc">Нужны для статистики посещений сайта: какие страницы смотрят и сколько времени проводят на сайте. Сейчас аналитические сервисы на сайте не подключены.</p></div>' +
         '<div class="ipc-cat"><div class="ipc-head">Маркетинговые' + sw("m", cur.m, false, "Маркетинговые cookie") + "</div>" +
           '<p class="ipc-desc">Нужны для показа рекламы и оценки её эффективности (Meta Pixel — Facebook и Instagram). Данные передаются компании Meta Platforms за пределы Республики Беларусь.</p></div>' +
         '<div class="ipc-row" style="margin-top:6px">' +
@@ -128,14 +114,14 @@
       if (!c) return;
       if (c === "open") { view(true); return; }
       var choice =
-        c === "all" ? { a: true, m: true } :
-        c === "none" ? { a: false, m: false } :
-        { a: b.querySelector('input[name="a"]').checked, m: b.querySelector('input[name="m"]').checked };
+        c === "all" ? { m: true } :
+        c === "none" ? { m: false } :
+        { m: b.querySelector('input[name="m"]').checked };
       var prev = getChoice();
       setChoice(choice);
       hideBanner();
-      // Если что-то уже загружено, а теперь выключено — перезагрузить страницу, чтобы выгрузить сервис.
-      if (prev && ((prev.a && !choice.a && window.ym) || (prev.m && !choice.m && window.fbq))) { location.reload(); return; }
+      // Если пиксель уже загружен, а теперь выключен — перезагрузить страницу, чтобы выгрузить его.
+      if (prev && prev.m && !choice.m && window.fbq) { location.reload(); return; }
       apply(choice);
     });
     document.body.appendChild(b);
